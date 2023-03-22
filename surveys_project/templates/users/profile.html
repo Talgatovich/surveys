@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load thumbnail %}
+
+{% block title %}
+  Профиль пользователя
+{% endblock %}
+
+
+{% block content %}
+<body style="background-color:{{ user.color }};">
+<div class="row container gy-5">
+   <div class="card col-9 p-3 border bg-light">
+     <div class="card-body">
+	  <td><h3 align="center"> {{ user.get_full_name }}</h3></td>
+     </div>
+   </div>
+    <div class="card col-3 text-center p-3 border bg-light">
+            <div class="card-body">
+               {% thumbnail user.avatar "80" crop="10px 10px"  as im %}
+                <img src="{{ im.url }}" >
+               {% endthumbnail %}
+            </div>
+    </div>
+
+  <div class="card text-left p-3 border bg-light">
+    <div class="card-body">
+      <p>Количество баллов: {{ user.balance }}  </p>
+      <p>Всего пройдено {{ user.passed_tests }} тестов</p>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}
