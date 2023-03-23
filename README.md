@@ -7,24 +7,22 @@
 
 ### Как запустить проект:
 
-Клонировать репозиторий и перейти в него в командной строке:
+Клонировать репозиторий:
 
 ```
 git clone git@github.com:Talgatovich/surveys.git
 ```
-``` 
-cd surveys/
-```
+
 
 
 Cоздать и активировать виртуальное окружение:
 
 ```
-python3 -m venv env
+python3 -m venv venv
 ```
 
 ```
-source env/bin/activate
+source venv/bin/activate
 ```
 
 ```
