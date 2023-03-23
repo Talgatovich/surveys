@@ -1,13 +1,13 @@
 from django.shortcuts import render
-from django.db.models import Q
-from .models import Poll, PassedPolls
+
+from .models import PassedPolls, Poll
 
 
 def index(request):
     if request.user.is_anonymous:
         return render(request, "poll/welcome.html")
     user = request.user
-    tests = Poll.objects.exclude(Q(passedpolls__user=user))
+    tests = Poll.objects.exclude(passed_poll__user=user)
     if request.method == "POST":
         balance = 0
         wrong = 0
@@ -17,7 +17,7 @@ def index(request):
             total += 1
             if val.correct_answer == request.POST.get(val.question):
                 PassedPolls.objects.create(poll=val, user=user)
-                balance += 10
+                balance += 30
                 correct += 1
             else:
                 wrong += 1
@@ -31,9 +31,7 @@ def index(request):
             "wrong": wrong,
             "total": total,
         }
-        return render(request, "poll/results.html", context)
+        return render(request, "poll/results.html", context=context)
     else:
         context = {"tests": tests}
-        return render(request, "poll/index.html", context)
-
-
+        return render(request, "poll/index.html", context=context)

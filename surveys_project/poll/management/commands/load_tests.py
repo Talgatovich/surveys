@@ -3,18 +3,15 @@ import os
 
 from django.core.management.base import BaseCommand
 
-from surveys_project.settings import BASE_DIR
-
 from poll.models import Poll
+from surveys_project.settings import BASE_DIR
 
 
 class Command(BaseCommand):
-    help = "Выгружаем даннные городов из csv в базу."
+    help = "Выгружаем тесты из json в базу."
 
     def add_arguments(self, parser):
-        parser.add_argument(
-            "file_name", default="polls.json", nargs="?", type=str
-        )
+        parser.add_argument("file_name", default="polls.json", nargs="?", type=str)
 
     def handle(self, *args, **options):
         f = open(

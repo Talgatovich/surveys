@@ -1,8 +1,8 @@
 from django.contrib.auth.decorators import login_required
-
-from django.views.generic import CreateView
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
+from django.views.generic import CreateView
+
 from .forms import CreationForm
 from .models import User
 
@@ -31,6 +31,7 @@ def buy_color(request, price, back_color=None, username_color=None):
     return redirect("users:profile")
 
 
+@login_required
 def summary_table(request):
     queryset = User.objects.all().order_by("-passed_tests")
     return render(request, "users/summary_table.html", context={"users_list": queryset})
