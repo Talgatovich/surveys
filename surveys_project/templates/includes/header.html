@@ -1,9 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 
 <header>
 <nav class="navbar navbar-light" style="background-color: lightskyblue">
     <div class="container">
+      <a class="navbar-brand" href="{% url 'poll:index' %}">
+        <img src="{% static 'icons/icons8-критическое-мышление-100.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+        <span style="color:red">Sur</span>veys
+      </a>
       <ul class="nav nav-pills">
       {% with request.resolver_match.view_name as view_name %}
       <ul class="nav nav-pills">
@@ -13,6 +18,11 @@
         </li>
         </li>
         {% if request.user.is_authenticated %}
+
+             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'users:summary_table' %}">Таблица игроков</a>
+            </li>
 
             </li>
             <li class="nav-item">

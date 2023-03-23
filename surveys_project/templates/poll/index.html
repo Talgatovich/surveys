@@ -1,15 +1,18 @@
 {% extends 'base.html' %}
 {% block title %}Главная страница{% endblock %}
 {% block content %}
+{% load static %}
+
   <div class="container ">
-    {% if questions %}<h1>Здесь только квизы!</h1>
-    {% else %}<h1>Скоро мы добавим новые вопросы!</h1>
-    <p> Загляни на свою <a href="{% url 'users:profile' %}">страницу</a>, где ты можешь приобрести новый бейдж или поменять цвет страницы профиля!</p>
+    {% if tests %}<h1>Добро пожаловать! Удачи в решении тестов</h1>
+    {% else %}<h1>Все тесты пройдены! <img src="{% static 'qtest.png' %}"  > </h1>
+
+    <p> Посмотри, на что ты можешь потратить заработанные баллы на своей <a href="{% url 'users:profile' %}">странице</a></p>
     {% endif %}
 
    <form method='post' action=''>
       {% csrf_token %}
-      {% for q  in questions%}
+      {% for q  in tests%}
       <div class="form-group">
         <label>{{ q.question }}?</label>
       </div>
@@ -17,33 +20,33 @@
           <div class="form-check">
               <input class="form-check-input" type="radio" name="{{ q.question }}" id="gridRadios1" value="1" checked>
               <label class="form-check-label" for="gridRadios1">
-                  {{ q.op1 }}
+                  {{ q.answer_1 }}
               </label>
           </div>
           <div class="form-check">
               <input class="form-check-input" type="radio" name="{{ q.question }}" id="gridRadios2" value="2">
               <label class="form-check-label" for="gridRadios2">
-                  {{ q.op2 }}
+                  {{ q.answer_2 }}
               </label>
           </div>
           <div class="form-check">
               <input class="form-check-input" type="radio" name="{{ q.question }}" id="gridRadios3" value="3">
               <label class="form-check-label" for="gridRadios1">
-                  {{ q.op3 }}
+                  {{ q.answer_3 }}
               </label>
           </div>
           <div class="form-check">
               <input class="form-check-input" type="radio" name="{{ q.question }}" id="gridRadios4" value="4">
               <label class="form-check-label" for="gridRadios2">
-                  {{ q.op4 }}
+                  {{ q.answer_4 }}
               </label>
           </div>
           <br>
       </div>
       {% endfor %}
-      {% if questions %}
+      {% if tests %}
       <br>
-      <button type="submit" class="btn btn-success">Проверить</button>
+       <button class="btn btn-primary"><span>Проверить</span></button>
       </form>
       {% endif %}
   </div>

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Недостаточно средств{% endblock %}
+{% block content %}
+  <h1>К сожалению, у тебя недостаточно средств для покупки </h1>
+  <img  src="{% static 'pay_error.jpg' %}" width="400" height="400" alt="Card image cap">
+  <h4>Заработать можно, решая <a href="{% url 'poll:index' %}">тесты</a>. Удачи! :)</h4>
+{% endblock %}

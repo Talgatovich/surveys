@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Результаты{% endblock %}
+{% block content %}
+{% load static %}
+
+  <div class="row justify-content-center">
+    <div class="col-md-8 p-5">
+      <div class="card">
+        <img class="card-img-top" src="{% static 'results.jpg' %}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Очки: {{balance}}</h5>
+          <p class="card-text">Правильных ответов: {{correct}}</p>
+          <p class="card-text">Неправильных ответов: {{wrong}}</p>
+          <p class="card-text">Всего вопросов: {{total}}</p>
+          {% if wrong == 0 %}<h5> Поздравляем! Все тесты пройдены! Скоро появятся новые тесты, ждём тебя снова!</h5>
+          {% else %}<h5>Удачи в следующий раз!</h5>
+          <a class="btn btn-primary" href="{% url 'poll:index' %}">Попробовать снова</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

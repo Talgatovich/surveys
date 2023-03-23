@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load thumbnail %}
+
+{% block title %}
+  Профиль пользователя
+{% endblock %}
+
+
+{% block content %}
+<body>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Имя</th>
+        <th scope="col">Фамилия</th>
+        <th scope="col">Username</th>
+        <th scope="col">Пройденные тесты</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for obj in users_list %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ obj.first_name }}</td>
+        <td>{{ obj.last_name }}</td>
+        <td>
+          {% if obj.username_color != 'white'%}
+            <font color={{ obj.username_color }}> {{ obj.username }}</font>
+          {% else %}
+            {{ obj.username }}
+          {% endif %}
+        </td>
+        <td>{{ obj.passed_tests }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+
+  </table>
+
+</body>
+
+{% endblock content %}

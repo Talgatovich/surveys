@@ -1,6 +1,5 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-# from django.utils.translation import gettext as _
 
 
 class User(AbstractUser):
@@ -20,10 +19,10 @@ class User(AbstractUser):
     avatar = models.ImageField(
         "Аватар",
         upload_to="users/",
-        default="users/avatar/nomedal.svg")
-
+        blank=True
+    )
     username_color = models.CharField("Цвет", max_length=50, default="white")
-    back_color = models.CharField("Цвет", max_length=50, default="white")
+    back_color = models.CharField("Цвет фона", max_length=50, default="white")
 
     class Meta:
         ordering = ("-pk",)

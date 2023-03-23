@@ -8,28 +8,111 @@
 
 
 {% block content %}
-<body style="background-color:{{ user.color }};">
-<div class="row container gy-5">
-   <div class="card col-9 p-3 border bg-light">
-     <div class="card-body">
-	  <td><h3 align="center"> {{ user.get_full_name }}</h3></td>
-     </div>
-   </div>
-    <div class="card col-3 text-center p-3 border bg-light">
-            <div class="card-body">
-               {% thumbnail user.avatar "80" crop="10px 10px"  as im %}
-                <img src="{{ im.url }}" >
-               {% endthumbnail %}
-            </div>
-    </div>
+<body style="background-color:{{ user.back_color }};">
+    <div class="row container gy-5">
+      <div class="card col-9 p-3 border bg-light">
+        <div class="card-body">
+         <td><h3 align="center"> {{ user.get_full_name }}</h3></td>
+        </div>
+      </div>
 
-  <div class="card text-left p-3 border bg-light">
-    <div class="card-body">
-      <p>Количество баллов: {{ user.balance }}  </p>
-      <p>Всего пройдено {{ user.passed_tests }} тестов</p>
+      <div class="card col-3 text-center p-3 border bg-light">
+          <div class="card-body">
+
+              {% if user.avatar %}
+                 {% thumbnail user.avatar "80" crop="10px 10px"  as im %}
+                   <img src="{{ im.url }}" >
+                 {% endthumbnail %}
+              {% else %}
+
+                <img src="{% static 'nomedal.png' %}" width="100" height="111" >
+
+              {% endif %}
+
+          </div>
+      </div>
+
+      <div class="card text-left p-3 border bg-light">
+        <div class="card-body">
+          <p>Количество баллов: {{ user.balance }}  </p>
+          <p>Всего пройдено тестов: {{ user.passed_tests }} </p>
+        </div>
+      </div>
+      <div>
+          <h4>Бэкграунд</h4>
+      </div>
+		<section>
+			<div>
+                <a href="{% url 'users:buy_back_color' 10 'black' %}" class="btn btn-outline-dark"
+                   role="button" aria-pressed="true">Купить за 10 баллов
+                </a>
+
+                <a href="{% url 'users:buy_back_color' 20 'silver' %}" class="btn btn-outline-secondary"
+                   role="button" aria-pressed="true">
+                   Купить за 20 баллов
+                </a>
+
+                <a href="{% url 'users:buy_back_color' 30 'lime' %}" class="btn btn-outline-success"
+                   role="button">
+                    Купить за 30 баллов
+                </a>
+
+                <a href="{% url 'users:buy_back_color' 40 'yellow' %}" class="btn btn-outline-warning"
+                   role="button">
+                    Купить за 40 баллов
+                </a>
+
+
+                <a href="{% url 'users:buy_back_color' 0 'white' %}" class="btn btn-light"
+                   role="button">
+                    Вернуть белый фон
+                </a>
+
+            </div>
+          </section>
+	    </div>
+    <br>
+    <br>
+
+
+  <div class="row container gy-5">
+    <div>
+        <h4>Цвет логина</h4>
+    </div>
+    <div>
+        <div>
+            <a href="{% url 'users:buy_username_color' 10 'black' %}" class="btn btn-outline-dark"
+               role="button" aria-pressed="true">Купить за 10 баллов
+            </a>
+
+            <a href="{% url 'users:buy_username_color' 20 'silver' %}" class="btn btn-outline-secondary"
+               role="button" aria-pressed="true">
+               Купить за 20 баллов
+            </a>
+
+            <a href="{% url 'users:buy_username_color' 30 'lime' %}" class="btn btn-outline-success"
+               role="button">
+                Купить за 30 баллов
+            </a>
+
+            <a href="{% url 'users:buy_username_color' 40 'yellow' %}" class="btn btn-outline-warning"
+               role="button">
+                Купить за 40 баллов
+            </a>
+
+
+            <a href="{% url 'users:buy_username_color' 0 'white' %}" class="btn btn-light"
+               role="button">
+                Вернуть белый цвет
+            </a>
+
+        </div>
+
     </div>
   </div>
-</div>
+
+
+</body>
 
 
 {% endblock content %}

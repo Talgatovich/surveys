@@ -7,13 +7,7 @@ class UserAdmin(admin.ModelAdmin):
 	list_display = (
 		"id",
 		"username",
-		"password",
 		"first_name",
 		"last_name",
 		"email",
-		"balance",
-		"passed_tests",
-		"avatar",
-		"username_color",
-		"back_color",
 	)
