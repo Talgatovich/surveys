@@ -37,7 +37,7 @@ class TestContext:
 
         assert (
             len(response.context.get("tests")) == cnt
-        ), "Убедитесь, что выводятся все тесты на странице"
+        ), "Убедитесь, что пройденные тесты не выводятся на страницу"
 
     @pytest.mark.django_db(transaction=True)
     def test_summary_table(self, another_user, another_user_client):
